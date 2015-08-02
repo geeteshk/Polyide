@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Project[] testProjects = new Project[]{new Project("A test project", "A description for the test project.")};
+        Project[] testProjects = new Project[]{new Project("A test project", "A description for the test project."), new Project("Another project", "Blah blah blah.")};
         mAdapter = new ProjectAdapter(testProjects);
         mRecyclerView.setAdapter(mAdapter);
     }
