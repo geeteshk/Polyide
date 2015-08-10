@@ -6,12 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ProjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView mTitleView;
     public TextView mDescriptionView;
+    public View mRootView;
+    public WebView mPreview;
 
     private int mHeight = 0;
     private boolean mExpanded = false;
@@ -20,13 +24,17 @@ public class ProjectHolder extends RecyclerView.ViewHolder implements View.OnCli
     public ProjectHolder(View view) {
         super(view);
 
-        view.setOnClickListener(this);
+        mRootView = view;
+        mRootView.setOnClickListener(this);
+
         mTitleView = (TextView) view.findViewById(R.id.project_title);
         mDescriptionView = (TextView) view.findViewById(R.id.project_description);
 
         mView = LayoutInflater.from(view.getContext()).inflate(R.layout.project_expanded_item, null, false);
         mView.findViewById(R.id.open_project).getBackground().setColorFilter(0xff2196f3, PorterDuff.Mode.MULTIPLY);
         mView.findViewById(R.id.configure_project).getBackground().setColorFilter(0xffffffff, PorterDuff.Mode.MULTIPLY);
+        mPreview = (WebView) mView.findViewById(R.id.project_preview);
+        mPreview.setWebViewClient(new PolyClient());
     }
 
     @Override
@@ -56,5 +64,14 @@ public class ProjectHolder extends RecyclerView.ViewHolder implements View.OnCli
         });
 
         valueAnimator.start();
+    }
+
+    private class PolyClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 }
