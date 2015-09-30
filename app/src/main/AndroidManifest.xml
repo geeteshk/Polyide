@@ -28,6 +28,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.geeteshk.polyide.MainActivity" />
         </activity>
+        <activity
+            android:name=".CatalogActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".CreateActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.geeteshk.polyide.CreateActivity" />
+        </activity>
+        <activity
+            android:name=".ElementsActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".CatalogActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.geeteshk.polyide.CatalogActivity" />
+        </activity>
+        <activity
+            android:name=".SetupActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".CatalogActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.geeteshk.polyide.CatalogActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -62,5 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mAdapter.notifyDataSetChanged();
+        recreate();
     }
 }

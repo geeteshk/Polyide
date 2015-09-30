@@ -7,5 +7,7 @@
     <string name="action_open">OPEN</string>
     <string name="input_title">Title</string>
     <string name="input_description">Description</string>
+    <string name="action_next">NEXT</string>
+    <string name="action_back">BACK</string>
 
 </resources>

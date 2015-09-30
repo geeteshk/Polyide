@@ -2,6 +2,7 @@ package io.geeteshk.polyide;
 
 import android.os.Environment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,23 +22,27 @@ public class ProjectHandler {
     private static final String INDEX_HTML = "<!doctype html>\n" +
             "<html>\n" +
             "  <head>\n" +
-            "    <meta charset=\"UTF-8\">\n" +
             "    <title>@name</title>\n" +
-            "    <meta name=\"author\" content=\"@author\">\n" +
+            "\n" +
             "    <meta name=\"description\" content=\"@description\">\n" +
-            "    <meta name=\"keywords\" content=\"@keywords\">\n" +
-            "    <link rel=\"shortcut icon\" href=\"images/favicon.ico\" type=\"image/vnd.microsoft.icon\">\n" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0\">\n" +
+            "    <meta name=\"mobile-web-app-capable\" content=\"yes\">\n" +
+            "    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n" +
+            "\n" +
+            "    @imports\n" +
+            "    <script src=\"bower_components/webcomponentsjs/webcomponents-lite.min.js\"></script>" +
+            "\n" +
             "    <link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n" +
-            "    <script src=\"main.js\" type=\"text/javascript\"></script>\n" +
             "  </head>\n" +
-            "  <body>\n" +
+            "  <body unresolved>\n" +
             "    <h1>Hello World!</h1>\n" +
+            "    <script src=\"main.js\" />" +
             "  </body>\n" +
             "</html>";
 
     private static final String STYLE_CSS = "/* Add all your styles here */";
 
-    private static final String MAIN_JS = "// Add all your JS here";
+    private static final String MAIN_JS = "// Add all your scripts here";
 
     public static void init() {
         if (!new File(Environment.getExternalStorageDirectory() + File.separator + "Polyide").exists()) {
@@ -100,8 +105,14 @@ public class ProjectHandler {
         }
 
         try {
+            JSONArray array = new JSONArray();
+            for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
+                array.put(ElementsHolder.getInstance().getElements().get(i));
+            }
+
             projectJson.put("title", project.getTitle());
             projectJson.put("description", project.getDescription());
+            projectJson.put("elements", array);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -127,7 +138,19 @@ public class ProjectHandler {
         }
 
         try {
-            fileOutputStream.write(INDEX_HTML.getBytes());
+            String newIndex = INDEX_HTML.replace("@name", project.getTitle())
+                    .replace("@description", project.getDescription());
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
+                builder.append("    <link rel=\"import\" href=\"bower_components/")
+                        .append(ElementsHolder.getInstance().getElements().get(i))
+                        .append("/")
+                        .append(ElementsHolder.getInstance().getElements().get(i))
+                        .append(".html\">\n");
+            }
+
+            newIndex = newIndex.replace("@imports", builder.toString());
+            fileOutputStream.write(newIndex.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,6 +184,8 @@ public class ProjectHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        new GetComponentsTask(SetupActivity.mProgressBar, SetupActivity.mProgressText, project).execute(SetupActivity.getComponentsUrl());
 
         return 0;
     }
