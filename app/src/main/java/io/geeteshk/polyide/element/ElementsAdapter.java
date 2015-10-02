@@ -50,16 +50,16 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Holder
                 holder.mElementDescription.setText(Elements.GOOGLE_DESCRIPTIONS[position]);
                 break;
             case 3:
-                holder.mElementBox.setText(Elements.GOLD_TITLES[position]);
+                holder.mElementBox.setText("gold-" + Elements.GOLD_TITLES[position]);
                 holder.mElementDescription.setText(Elements.GOLD_DESCRIPTIONS[position]);
                 break;
             case 4:
-                holder.mElementBox.setText(Elements.NEON_TITLES[position]);
+                holder.mElementBox.setText("neon-" + Elements.NEON_TITLES[position]);
                 holder.mElementDescription.setText(Elements.NEON_DESCRIPTIONS[position]);
                 break;
             case 5:
-                holder.mElementBox.setText(Elements.PLATINUM_TITLES[position]);
-                holder.mElementDescription.setText("platinum-" + Elements.PLATINUM_DESCRIPTIONS[position]);
+                holder.mElementBox.setText("platinum-" + Elements.PLATINUM_TITLES[position]);
+                holder.mElementDescription.setText(Elements.PLATINUM_DESCRIPTIONS[position]);
                 break;
             case 6:
                 holder.mElementBox.setText(Elements.MOLECULES_TITLES[position]);
@@ -96,11 +96,11 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Holder
                 return Elements.GOOGLE_TITLES.length;
             case 3:
                 return Elements.GOLD_TITLES.length;
-            case 5:
+            case 4:
                 return Elements.NEON_TITLES.length;
-            case 6:
+            case 5:
                 return Elements.PLATINUM_TITLES.length;
-            case 7:
+            case 6:
                 return Elements.MOLECULES_TITLES.length;
         }
 
