@@ -25,10 +25,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
         projectHolder.mTitleView.setText(mProjects[i].getTitle());
         projectHolder.mDescriptionView.setText(mProjects[i].getDescription());
 
-        if (mProjects[i].getTitle().equals("Welcome to Polyide!")) {
-            projectHolder.mRootView.setOnClickListener(null);
-        }
-
         projectHolder.mPreview.loadUrl("file://" + Environment.getExternalStorageDirectory() + File.separator + "Polyide" + File.separator + projectHolder.mTitleView.getText() + File.separator + "index.html");
     }
 

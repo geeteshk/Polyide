@@ -90,6 +90,16 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Holder
                 return Elements.IRON_TITLES.length;
             case 1:
                 return Elements.PAPER_TITLES.length;
+            case 2:
+                return Elements.GOOGLE_TITLES.length;
+            case 3:
+                return Elements.GOLD_TITLES.length;
+            case 5:
+                return Elements.NEON_TITLES.length;
+            case 6:
+                return Elements.PLATINUM_TITLES.length;
+            case 7:
+                return Elements.MOLECULES_TITLES.length;
         }
 
         return 0;
