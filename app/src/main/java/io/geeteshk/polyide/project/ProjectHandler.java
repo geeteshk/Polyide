@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.project;
 
 import android.os.Environment;
 
@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import io.geeteshk.polyide.SetupActivity;
+import io.geeteshk.polyide.element.ElementsHolder;
+import io.geeteshk.polyide.util.GetComponentsTask;
 
 public class ProjectHandler {
 

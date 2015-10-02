@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.catalog;
 
 
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import io.geeteshk.polyide.R;
 
 public class CatalogAdapter extends BaseAdapter {
 

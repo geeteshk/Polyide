@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.element;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import io.geeteshk.polyide.R;
 
 public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Holder> {
 

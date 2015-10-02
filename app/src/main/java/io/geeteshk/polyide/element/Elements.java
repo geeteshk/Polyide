@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.element;
 
 
 public class Elements {

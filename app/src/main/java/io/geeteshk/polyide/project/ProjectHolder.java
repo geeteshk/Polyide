@@ -1,10 +1,12 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.project;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
+import io.geeteshk.polyide.R;
 
 public class ProjectHolder extends RecyclerView.ViewHolder {
     public TextView mTitleView;

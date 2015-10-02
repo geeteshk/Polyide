@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.util;
 
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -16,6 +16,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+
+import io.geeteshk.polyide.project.Project;
 
 public class GetComponentsTask extends AsyncTask<String, String, String> {
 

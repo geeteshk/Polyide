@@ -7,6 +7,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import io.geeteshk.polyide.element.ElementsHolder;
+import io.geeteshk.polyide.project.Project;
+import io.geeteshk.polyide.project.ProjectHandler;
+
 public class SetupActivity extends AppCompatActivity {
 
     public static ProgressBar mProgressBar;

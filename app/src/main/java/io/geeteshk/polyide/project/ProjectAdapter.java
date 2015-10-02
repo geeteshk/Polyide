@@ -1,4 +1,4 @@
-package io.geeteshk.polyide;
+package io.geeteshk.polyide.project;
 
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import java.io.File;
+
+import io.geeteshk.polyide.R;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
 

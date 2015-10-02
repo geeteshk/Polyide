@@ -10,6 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import io.geeteshk.polyide.project.ProjectAdapter;
+import io.geeteshk.polyide.project.ProjectHandler;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton mCreateProject;

@@ -10,6 +10,10 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import io.geeteshk.polyide.catalog.CatalogActivity;
+import io.geeteshk.polyide.element.ElementsHolder;
+import io.geeteshk.polyide.project.Project;
+
 public class CreateActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button mNext;
