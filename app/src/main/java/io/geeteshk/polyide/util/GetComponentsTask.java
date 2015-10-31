@@ -1,5 +1,7 @@
 package io.geeteshk.polyide.util;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.widget.ProgressBar;
@@ -17,18 +19,21 @@ import java.net.URLConnection;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import io.geeteshk.polyide.MainActivity;
 import io.geeteshk.polyide.project.Project;
 
 public class GetComponentsTask extends AsyncTask<String, String, String> {
 
+    Context mContext;
     ProgressBar mProgressBar;
     Project mProject;
     TextView mProgressText;
 
-    public GetComponentsTask(ProgressBar progressBar, TextView progressText, Project project) {
+    public GetComponentsTask(ProgressBar progressBar, TextView progressText, Project project, Context context) {
         mProgressBar = progressBar;
         mProject = project;
         mProgressText = progressText;
+        mContext = context;
     }
 
     public static boolean deleteDir(File dir) {
@@ -80,7 +85,6 @@ public class GetComponentsTask extends AsyncTask<String, String, String> {
 
             output.close();
             input.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,13 +107,20 @@ public class GetComponentsTask extends AsyncTask<String, String, String> {
         mProgressText.setText("Finished!");
         mProgressBar.setIndeterminate(false);
         mProgressBar.setProgress(100);
+
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
     }
 
     private void organizeFiles() {
         File componentsFolder = new File(Environment.getExternalStorageDirectory().toString() + "/Polyide/" + mProject.getTitle() + "/components/bower_components");
         File newFolder = new File(Environment.getExternalStorageDirectory().toString() + "/Polyide/" + mProject.getTitle() + "/bower_components");
 
-        newFolder.mkdir();
+        if (!newFolder.exists()) {
+            newFolder.mkdir();
+        }
+
         if (componentsFolder.isDirectory()) {
             File[] content = componentsFolder.listFiles();
             for (File aContent : content) {

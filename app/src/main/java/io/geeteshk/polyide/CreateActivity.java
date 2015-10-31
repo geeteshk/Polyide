@@ -1,7 +1,6 @@
 package io.geeteshk.polyide;
 
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +27,6 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         mDescriptionInput = (TextInputLayout) findViewById(R.id.description_input);
 
         mNext = (Button) findViewById(R.id.create_next);
-        mNext.getBackground().setColorFilter(0xff2196f3, PorterDuff.Mode.MULTIPLY);
         mNext.setOnClickListener(this);
     }
 
@@ -48,6 +46,7 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                         startActivity(intent);
                         ElementsHolder.getInstance().setProject(new Project(mTitleInput.getEditText().getText().toString(), mDescriptionInput.getEditText().getText().toString()));
                         ElementsHolder.getInstance().setElements(new ArrayList<String>());
+                        ElementsHolder.getInstance().setConfigure(false);
                     }
                 }
 

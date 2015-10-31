@@ -25,4 +25,15 @@
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
 
+    <TextView
+        android:id="@+id/no_projects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:alpha="0"
+        android:text="No projects!"
+        android:textColor="#42000000"
+        android:textSize="42sp"
+        android:textStyle="italic|bold" />
+
 </RelativeLayout>

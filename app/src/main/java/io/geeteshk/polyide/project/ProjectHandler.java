@@ -1,5 +1,6 @@
 package io.geeteshk.polyide.project;
 
+import android.content.Context;
 import android.os.Environment;
 
 import org.json.JSONArray;
@@ -86,111 +87,112 @@ public class ProjectHandler {
             }
         }
 
-        if (projects.isEmpty()) {
-            return new Project[]{new Project("Welcome to Polyide!", "Looks like you don't have any projects yet. Why don't you create one by pressing the button in the bottom right corner?")};
-        }
-
         Project[] projectArray = new Project[projects.size()];
         return projects.toArray(projectArray);
     }
 
-    public static int createProject(Project project) {
-        File projectDir = new File(POLYIDE_DIR + File.separator + project.getTitle());
-        File projectFile = new File(projectDir.getPath() + File.separator + project.getTitle() + ".poly");
-        File indexHtml = new File(projectDir.getPath() + File.separator + "index.html");
-        File styleCss = new File(projectDir.getPath() + File.separator + "style.css");
-        File mainJs = new File(projectDir.getPath() + File.separator + "main.js");
-        JSONObject projectJson = new JSONObject();
+    public static int createProject(Project project, boolean configure, Context context) {
+        if (!configure) {
+            File projectDir = new File(POLYIDE_DIR + File.separator + project.getTitle());
+            File projectFile = new File(projectDir.getPath() + File.separator + project.getTitle() + ".poly");
+            File indexHtml = new File(projectDir.getPath() + File.separator + "index.html");
+            File styleCss = new File(projectDir.getPath() + File.separator + "style.css");
+            File mainJs = new File(projectDir.getPath() + File.separator + "main.js");
+            JSONObject projectJson = new JSONObject();
 
-        if (!projectDir.exists()) {
-            projectDir.mkdir();
-        } else {
-            return 1;
-        }
-
-        try {
-            JSONArray array = new JSONArray();
-            for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
-                array.put(ElementsHolder.getInstance().getElements().get(i));
+            if (!projectDir.exists()) {
+                projectDir.mkdir();
+            } else {
+                return 1;
             }
 
-            projectJson.put("title", project.getTitle());
-            projectJson.put("description", project.getDescription());
-            projectJson.put("elements", array);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            try {
+                JSONArray array = new JSONArray();
+                for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
+                    array.put(ElementsHolder.getInstance().getElements().get(i));
+                }
 
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream(projectFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        assert fileOutputStream != null;
-        try {
-            fileOutputStream.write(projectJson.toString(4).getBytes());
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            fileOutputStream = new FileOutputStream(indexHtml);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            String newIndex = INDEX_HTML.replace("@name", project.getTitle())
-                    .replace("@description", project.getDescription());
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
-                builder.append("    <link rel=\"import\" href=\"bower_components/")
-                        .append(ElementsHolder.getInstance().getElements().get(i))
-                        .append("/")
-                        .append(ElementsHolder.getInstance().getElements().get(i))
-                        .append(".html\">\n");
+                projectJson.put("title", project.getTitle());
+                projectJson.put("description", project.getDescription());
+                projectJson.put("elements", array);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
-            newIndex = newIndex.replace("@imports", builder.toString());
-            fileOutputStream.write(newIndex.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+            FileOutputStream fileOutputStream = null;
+            try {
+                fileOutputStream = new FileOutputStream(projectFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            assert fileOutputStream != null;
+            try {
+                fileOutputStream.write(projectJson.toString(4).getBytes());
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream = new FileOutputStream(indexHtml);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                String newIndex = INDEX_HTML.replace("@name", project.getTitle())
+                        .replace("@description", project.getDescription());
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < ElementsHolder.getInstance().getElements().size(); i++) {
+                    builder.append("    <link rel=\"import\" href=\"bower_components/")
+                            .append(ElementsHolder.getInstance().getElements().get(i))
+                            .append("/")
+                            .append(ElementsHolder.getInstance().getElements().get(i))
+                            .append(".html\">\n");
+                }
+
+                newIndex = newIndex.replace("@imports", builder.toString());
+                fileOutputStream.write(newIndex.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream = new FileOutputStream(styleCss);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream.write(STYLE_CSS.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream = new FileOutputStream(mainJs);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream.write(MAIN_JS.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        try {
-            fileOutputStream = new FileOutputStream(styleCss);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            fileOutputStream.write(STYLE_CSS.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            fileOutputStream = new FileOutputStream(mainJs);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            fileOutputStream.write(MAIN_JS.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        new GetComponentsTask(SetupActivity.mProgressBar, SetupActivity.mProgressText, project).execute(SetupActivity.getComponentsUrl());
-
+        new GetComponentsTask(SetupActivity.mProgressBar, SetupActivity.mProgressText, project, context).execute(SetupActivity.getComponentsUrl());
         return 0;
+    }
+
+    public static void deleteProject(String title) {
+        GetComponentsTask.deleteDir(new File(Environment.getExternalStorageDirectory().toString() + "/Polyide/" + title));
     }
 }

@@ -20,10 +20,17 @@ public class SetupActivity extends AppCompatActivity {
         ArrayList<String> elements = ElementsHolder.getInstance().getElements();
         StringBuilder builder = new StringBuilder("http://bowerarchiver.appspot.com/archive?");
         for (int i = 0; i < elements.size(); i++) {
-            builder.append(elements.get(i))
-                    .append("=PolymerElements%2F")
-                    .append(elements.get(i))
-                    .append("%23%5E1.0.0&");
+            if (elements.get(i).startsWith("google") || elements.get(i).startsWith("firebase")) {
+                builder.append(elements.get(i))
+                        .append("=GoogleWebComponents%2F")
+                        .append(elements.get(i))
+                        .append("%23%5E1.0.0&");
+            } else {
+                builder.append(elements.get(i))
+                        .append("=PolymerElements%2F")
+                        .append(elements.get(i))
+                        .append("%23%5E1.0.0&");
+            }
         }
 
         return builder.toString();
@@ -44,6 +51,6 @@ public class SetupActivity extends AppCompatActivity {
         Project project = new Project(ElementsHolder.getInstance().getProject().getTitle(), ElementsHolder.getInstance().getProject().getDescription());
         mProgressText.setText("Creating project files...");
         mProgressBar.setIndeterminate(true);
-        ProjectHandler.createProject(project);
+        ProjectHandler.createProject(project, ElementsHolder.getInstance().isConfigure(), SetupActivity.this);
     }
 }

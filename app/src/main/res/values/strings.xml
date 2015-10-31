@@ -9,5 +9,8 @@
     <string name="input_description">Description</string>
     <string name="action_next">NEXT</string>
     <string name="action_back">BACK</string>
+    <string name="add_element">ADD ELEMENT</string>
+    <string name="delete_project">Enter your project title</string>
+    <string name="delete_project_warning">WARNING! Once you delete your project you can\'t get it back! Do this only if you are sure you want to delete your project.</string>
 
 </resources>

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import io.geeteshk.polyide.project.ProjectAdapter;
 import io.geeteshk.polyide.project.ProjectHandler;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView mNoProjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +29,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mNoProjects = (TextView) findViewById(R.id.no_projects);
         mRecyclerView = (RecyclerView) findViewById(R.id.projects_view);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ProjectAdapter(ProjectHandler.getProjects());
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new ProjectAdapter(MainActivity.this, ProjectHandler.getProjects());
+        if (ProjectHandler.getProjects().length == 0) {
+            mNoProjects.setAlpha(1);
+        }
 
+        mRecyclerView.setAdapter(mAdapter);
         mCreateProject = (FloatingActionButton) findViewById(R.id.create_project);
         mCreateProject.setOnClickListener(this);
     }

@@ -52,6 +52,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".catalog.CatalogActivity" />
         </activity>
+        <activity
+            android:name=".ConfigureActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.geeteshk.polyide.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
