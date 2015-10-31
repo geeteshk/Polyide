@@ -33,7 +33,7 @@
         android:alpha="0"
         android:text="No projects!"
         android:textColor="#42000000"
-        android:textSize="42sp"
+        android:textSize="24sp"
         android:textStyle="italic|bold" />
 
 </RelativeLayout>
