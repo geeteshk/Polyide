@@ -27,6 +27,7 @@ import io.geeteshk.polyide.element.ElementsHolder;
 import io.geeteshk.polyide.project.Project;
 import io.geeteshk.polyide.project.ProjectHandler;
 import io.geeteshk.polyide.util.PolyClient;
+import io.geeteshk.polyide.util.Theme;
 
 public class ConfigureActivity extends AppCompatActivity {
 
@@ -53,6 +54,8 @@ public class ConfigureActivity extends AppCompatActivity {
     @SuppressLint("InflateParams")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Theme.getThemeId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configure);
 

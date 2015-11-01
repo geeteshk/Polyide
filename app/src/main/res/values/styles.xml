@@ -4,6 +4,14 @@
         <item name="colorPrimary">#2196F3</item>
         <item name="colorPrimaryDark">#1976D2</item>
         <item name="colorAccent">#FF4081</item>
+        <item name="android:endColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.Night" parent="Theme.AppCompat">
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:endColor">#333333</item>
     </style>
 
 </resources>

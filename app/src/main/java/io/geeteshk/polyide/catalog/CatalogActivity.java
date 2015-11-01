@@ -11,6 +11,7 @@ import android.widget.GridView;
 import io.geeteshk.polyide.R;
 import io.geeteshk.polyide.SetupActivity;
 import io.geeteshk.polyide.element.ElementsActivity;
+import io.geeteshk.polyide.util.Theme;
 
 public class CatalogActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -19,6 +20,8 @@ public class CatalogActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Theme.getThemeId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 

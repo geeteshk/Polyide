@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import io.geeteshk.polyide.R;
+import io.geeteshk.polyide.util.Theme;
 
 public class ElementsActivity extends AppCompatActivity {
 
@@ -15,6 +16,8 @@ public class ElementsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Theme.getThemeId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elements);
 

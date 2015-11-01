@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import io.geeteshk.polyide.project.ProjectAdapter;
 import io.geeteshk.polyide.project.ProjectHandler;
+import io.geeteshk.polyide.util.Theme;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ProjectHandler.init();
+        setTheme(Theme.getThemeId(this));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -54,7 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return item.getItemId() == R.id.action_settings || super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_settings) {
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
 
     }
 

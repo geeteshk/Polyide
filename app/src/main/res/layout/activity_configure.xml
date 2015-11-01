@@ -31,7 +31,7 @@
             android:layout_marginRight="32dp"
             android:layout_marginStart="56dp"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@android:color/white"
+            app:cardBackgroundColor="?android:attr/endColor"
             app:cardCornerRadius="2dp">
 
             <WebView
@@ -72,8 +72,7 @@
                 android:id="@+id/total_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total"
-                android:textColor="@android:color/black" />
+                android:text="Total" />
 
             <TextView
                 android:id="@+id/project_size"
@@ -81,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/total_text"
                 android:text="0.00 MB"
-                android:textColor="@android:color/black"
                 android:textSize="48sp" />
 
         </RelativeLayout>

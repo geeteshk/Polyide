@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import io.geeteshk.polyide.element.ElementsHolder;
 import io.geeteshk.polyide.project.Project;
 import io.geeteshk.polyide.project.ProjectHandler;
+import io.geeteshk.polyide.util.Theme;
 
 public class SetupActivity extends AppCompatActivity {
 
@@ -38,6 +39,8 @@ public class SetupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Theme.getThemeId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup);
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import io.geeteshk.polyide.catalog.CatalogActivity;
 import io.geeteshk.polyide.element.ElementsHolder;
 import io.geeteshk.polyide.project.Project;
+import io.geeteshk.polyide.util.Theme;
 
 public class CreateActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +21,8 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(Theme.getThemeId(this));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
