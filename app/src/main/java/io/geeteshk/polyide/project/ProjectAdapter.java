@@ -12,6 +12,7 @@ import java.io.File;
 
 import io.geeteshk.polyide.ConfigureActivity;
 import io.geeteshk.polyide.R;
+import io.geeteshk.polyide.workspace.WorkspaceActivity;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
 
@@ -33,6 +34,15 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
         projectHolder.mTitleView.setText(mProjects[i].getTitle());
         projectHolder.mDescriptionView.setText(mProjects[i].getDescription());
         projectHolder.mPreview.loadUrl("file://" + Environment.getExternalStorageDirectory() + File.separator + "Polyide" + File.separator + projectHolder.mTitleView.getText() + File.separator + "index.html");
+        projectHolder.mOpenProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openIntent = new Intent(mContext, WorkspaceActivity.class);
+                openIntent.putExtra("project_name", mProjects[i].getTitle());
+                mContext.startActivity(openIntent);
+            }
+        });
+
         projectHolder.mConfigureProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

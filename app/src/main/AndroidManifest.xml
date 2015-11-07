@@ -68,6 +68,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="io.geeteshk.polyide.MainActivity" />
         </activity>
+        <activity
+            android:name=".workspace.WorkspaceActivity"
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

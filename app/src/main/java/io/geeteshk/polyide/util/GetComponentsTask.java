@@ -21,6 +21,7 @@ import java.util.zip.ZipInputStream;
 
 import io.geeteshk.polyide.MainActivity;
 import io.geeteshk.polyide.project.Project;
+import io.geeteshk.polyide.project.ProjectHandler;
 
 public class GetComponentsTask extends AsyncTask<String, String, String> {
 
@@ -86,7 +87,7 @@ public class GetComponentsTask extends AsyncTask<String, String, String> {
             output.close();
             input.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            PolyLog.log(e.getMessage(), 'e');
         }
 
         return null;
@@ -130,6 +131,7 @@ public class GetComponentsTask extends AsyncTask<String, String, String> {
 
         deleteDir(new File(Environment.getExternalStorageDirectory().toString() + "/Polyide/" + mProject.getTitle() + "/components"));
         deleteDir(new File(Environment.getExternalStorageDirectory().toString() + "/Polyide/" + mProject.getTitle() + "/components.zip"));
+        ProjectHandler.setupImports(mProject);
     }
 
     private void unpackComponents() {
@@ -164,7 +166,7 @@ public class GetComponentsTask extends AsyncTask<String, String, String> {
 
             zipInputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            PolyLog.log(e.getMessage(), 'e');
         }
     }
 }
