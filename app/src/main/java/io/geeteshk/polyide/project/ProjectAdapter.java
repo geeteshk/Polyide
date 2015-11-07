@@ -1,8 +1,8 @@
 package io.geeteshk.polyide.project;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +16,10 @@ import io.geeteshk.polyide.workspace.WorkspaceActivity;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
 
-    public Context mContext;
+    public AppCompatActivity mContext;
     public Project[] mProjects;
 
-    public ProjectAdapter(Context context, Project[] projects) {
+    public ProjectAdapter(AppCompatActivity context, Project[] projects) {
         mContext = context;
         mProjects = projects;
     }
@@ -39,7 +39,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectHolder> {
             public void onClick(View v) {
                 Intent openIntent = new Intent(mContext, WorkspaceActivity.class);
                 openIntent.putExtra("project_name", mProjects[i].getTitle());
-                mContext.startActivity(openIntent);
+                mContext.startActivityForResult(openIntent, 0);
             }
         });
 
