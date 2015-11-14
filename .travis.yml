@@ -16,4 +16,6 @@ android:
     - extra-android-support
     - extra-android-m2repository
 
-script: ./gradlew assembleDebug
+script: 
+  - chmod +x gradlew
+  - ./gradlew assembleDebug
