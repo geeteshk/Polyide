@@ -19,3 +19,11 @@ android:
 script: 
   - chmod +x gradlew
   - ./gradlew assembleDebug
+  
+deploy:
+  provider: releases
+  api_key: 9fd4023bd5b0b26dd78c0524eae775cef730e14a
+  file: app/build/outputs/apk/app-debug.apk
+  skip_cleanup: true
+  on:
+    tags: true
