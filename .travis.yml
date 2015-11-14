@@ -1,0 +1,19 @@
+language: android
+jdk: oraclejdk8
+android:
+  components:
+    # SDK Tools
+    - platform-tools
+    - tools
+
+    # Build Tools
+    - build-tools-23.0.2
+
+    # SDK Version
+    - android-23
+
+    # Additional Components
+    - extra-android-support
+    - extra-android-m2repository
+
+script: ./gradlew assembleDebug
